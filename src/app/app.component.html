@@ -1,27 +1,32 @@
 
 <div style="display: flex; justify-content: center; margin-top: 20px;">
-<form >
+<form [formGroup]="reisterAddress" (ngSubmit)="submit()">
 
   <div class="m-t-10" >
-    <input placeholder="Enter Name" name="name"/>
+    <input placeholder="Enter Name" name="name" formControlName="name"/>
   </div>
   <div class="m-t-10">
-    <input placeholder="email" name="email"/>
+    <input placeholder="email" name="email" formControlName="email"/>
   </div>
-  <div>
-    <p>Address Details</p>
-    <div class="m-t-10">
-      <input placeholder="Enter cityName" name="cityName"/>
-    </div>
-    <div class="m-t-10">
-      <input placeholder="Enter stateName" name="stateName"/>
-    </div>
-    <div class="m-t-10">
-      <input placeholder="Enter streetName" name="streetName"/>
-    </div>
-    <div class="m-t-10">
-      <input placeholder="Enter landMark" name="landMark"/>
-    </div>
+   
+  <div class="m-t-10" formArrayName="addresses">
+    <ng-container *ngForm="let control of addressAsFormArray.controls;let i = index">
+      <p>Address Details-{{i}}</p>
+      <div [formGroupName]="i">
+        <div class="m-t-10">
+          <input placeholder="Enter cityName" name="cityName" formControlName="cityName"/>
+        </div>
+        <div class="m-t-10">
+          <input placeholder="Enter stateName" name="stateName" formControlName="stateName"/>
+        </div>
+        <div class="m-t-10">
+          <input placeholder="Enter streetName" name="streetName" formControlName="stateName"/>
+        </div>
+        <div class="m-t-10">
+          <input placeholder="Enter landMark" name="landMark" formControlName="landMark"/>
+        </div>
+      </div>
+    </ng-container>
   </div>
   <div style="display: flex; justify-content: end;" class="m-t-10">
     <button type="submit">submit</button>
