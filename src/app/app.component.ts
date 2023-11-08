@@ -41,4 +41,13 @@ export class AppComponent {
   }
 
   
+  public get addressAsFormArray() : FormArray {
+    return this.reisterAddress.get('addresses') as FormArray; 
+  }
+  
+  submit(){
+    console.log(this.reisterAddress.value)
+  }
+
+  
 }
